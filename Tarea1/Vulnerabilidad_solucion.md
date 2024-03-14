@@ -19,7 +19,8 @@ Si un atacante ingresa ' OR '1'='1 como nombre de usuario y contraseña, la cons
 
 sql
 
-SELECT * FROM usuarios WHERE username='' OR '1'='1' AND password='' OR '1'='1'```
+SELECT * FROM usuarios WHERE username='' OR '1'='1' AND password='' OR '1'='1'
+```
 
 Esto devolverá todos los registros de la tabla usuarios, permitiendo al atacante eludir la autenticación.
 Solución de la vulnerabilidad
