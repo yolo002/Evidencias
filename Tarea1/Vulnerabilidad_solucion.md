@@ -55,3 +55,51 @@ La vulnerabilidad de inyección de SQL puede tener consecuencias significativas 
 6. **Escalada de privilegios:** En sistemas donde las consultas SQL se ejecutan con privilegios elevados, una inyección de SQL exitosa podría permitir a un atacante obtener acceso de administrador u otros privilegios importantes en la aplicación o la base de datos.
 
 Es crucial comprender el impacto potencial de la vulnerabilidad de inyección de SQL y tomar medidas adecuadas para mitigar estos riesgos. La implementación de buenas prácticas de seguridad, como el uso de sentencias preparadas, la validación de entrada y el control de acceso, puede ayudar a proteger la integridad y confidencialidad de los datos de la aplicación frente a este tipo de ataques.
+
+# Solución a la Vulnerabilidad de Inyección de SQL
+
+La vulnerabilidad de inyección de SQL puede mitigarse mediante la implementación de buenas prácticas de seguridad y técnicas específicas en el desarrollo de aplicaciones web. A continuación se presenta un ejemplo de cómo corregir la vulnerabilidad de inyección de SQL en un script PHP:
+
+## Ejemplo de Código PHP Corregido
+
+```php
+<?php
+// Conexión a la base de datos (ejemplo básico)
+$conn = new mysqli("localhost", "root", "", "ejemplo");
+
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
+
+// Recibir datos del formulario
+$username = $_POST['username'];
+$password = $_POST['password'];
+
+// Sentencia preparada para evitar inyección de SQL
+$query = "SELECT * FROM usuarios WHERE username=? AND password=?";
+$stmt = $conn->prepare($query);
+
+// Verificar si la sentencia se preparó correctamente
+if ($stmt === false) {
+    die("Error en la preparación de la consulta: " . $conn->error);
+}
+
+// Vincular parámetros y ejecutar la consulta
+$stmt->bind_param("ss", $username, $password);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Verificar si se encontró algún usuario
+if ($result->num_rows > 0) {
+    echo "Inicio de sesión exitoso!";
+} else {
+    echo "Credenciales incorrectas.";
+}
+
+// Cerrar conexión y liberar recursos
+$stmt->close();
+$conn->close();
+?>
+```
+En este código, se utilizan sentencias preparadas con placeholders (?) y se vinculan los parámetros de forma segura utilizando bind_param() para evitar la inyección de SQL. Esto separa los datos de la consulta SQL y protege contra posibles ataques de inyección de SQL.
