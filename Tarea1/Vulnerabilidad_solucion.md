@@ -21,6 +21,24 @@ sql
 
 SELECT * FROM usuarios WHERE username='' OR '1'='1' AND password='' OR '1'='1'
 ```
+## Impacto de la Vulnerabilidad de Inyección de SQL
+
+La vulnerabilidad de inyección de SQL puede tener consecuencias significativas en la seguridad y el funcionamiento de una aplicación web. A continuación se describen algunas de las formas en las que esta vulnerabilidad puede afectar:
+
+1. **Acceso no autorizado a datos sensibles:** Un atacante puede utilizar la inyección de SQL para eludir la autenticación y acceder a datos sensibles almacenados en la base de datos, como información personal de usuarios, contraseñas en texto plano u otra información confidencial.
+
+2. **Manipulación de datos:** Los atacantes pueden utilizar consultas SQL maliciosas para modificar, agregar o eliminar datos de la base de datos. Esto puede causar corrupción de datos, alteración de registros importantes o incluso la eliminación completa de datos críticos.
+
+3. **Ejecución de comandos maliciosos:** En algunos casos, una inyección de SQL exitosa puede permitir la ejecución de comandos del sistema en el servidor. Esto podría ser utilizado por un atacante para subir archivos maliciosos, instalar malware u realizar otras acciones maliciosas en el sistema.
+
+4. **Denegación de servicio (DoS):** Algunas formas de inyección de SQL pueden consumir muchos recursos del servidor, lo que podría llevar a una denegación de servicio para usuarios legítimos al agotar los recursos del sistema.
+
+5. **Exposición de información confidencial:** Las consultas SQL maliciosas pueden revelar información sensible sobre la estructura de la base de datos, nombres de tablas, nombres de columnas, etc. Esta información puede ser utilizada por un atacante para planificar ataques más avanzados.
+
+6. **Escalada de privilegios:** En sistemas donde las consultas SQL se ejecutan con privilegios elevados, una inyección de SQL exitosa podría permitir a un atacante obtener acceso de administrador u otros privilegios importantes en la aplicación o la base de datos.
+
+Es crucial comprender el impacto potencial de la vulnerabilidad de inyección de SQL y tomar medidas adecuadas para mitigar estos riesgos. La implementación de buenas prácticas de seguridad, como el uso de sentencias preparadas, la validación de entrada y el control de acceso, puede ayudar a proteger la integridad y confidencialidad de los datos de la aplicación frente a este tipo de ataques.
+
 Esto devolverá todos los registros de la tabla usuarios, permitiendo al atacante eludir la autenticación.
 Solución de la vulnerabilidad
 Sentencias preparadas
