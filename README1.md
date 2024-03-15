@@ -1,5 +1,3 @@
-markdown
-
 # Vulnerabilidad de Inyección de SQL
 
 La vulnerabilidad de inyección de SQL es una de las amenazas más comunes en aplicaciones web donde los datos proporcionados por el usuario no se validan adecuadamente antes de ser utilizados en consultas SQL. Esto puede permitir a un atacante manipular la base de datos de la aplicación de manera no autorizada.
